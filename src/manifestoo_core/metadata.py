@@ -257,6 +257,7 @@ ODOO_SERIES_INFO = {
     OdooSeries.v14_0: OdooSeriesInfo(
         odoo_dep="odoo>=14.0a,<14.1dev",
         pkg_name_pfx="odoo14-addon",
+        pkg_version_specifier="==14.0.*",
         addons_ns="odoo.addons",
         namespace_packages=None,
         python_requires=">=3.6",

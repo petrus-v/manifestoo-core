@@ -197,9 +197,11 @@ def test_depends_core_addon(tmp_path: Path) -> None:
         ("11.0", ["mis_builder"], ["odoo11-addon-mis_builder"]),
         ("12.0", ["mis_builder"], ["odoo12-addon-mis_builder"]),
         ("13.0", ["mis_builder"], ["odoo13-addon-mis_builder"]),
-        ("14.0", ["mis_builder"], ["odoo14-addon-mis_builder"]),
+        ("14.0", ["mis_builder"], ["odoo14-addon-mis_builder==14.0.*"]),
         ("15.0", ["mis_builder"], ["odoo-addon-mis_builder>=15.0dev,<15.1dev"]),
         ("16.0", ["mis_builder"], ["odoo-addon-mis_builder>=16.0dev,<16.1dev"]),
+        ("17.0", ["mis_builder"], ["odoo-addon-mis_builder>=17.0dev,<17.1dev"]),
+        ("18.0", ["mis_builder"], ["odoo-addon-mis_builder==18.0.*", "odoo==18.0.*"]),
         (
             "14.0",
             [
@@ -207,8 +209,8 @@ def test_depends_core_addon(tmp_path: Path) -> None:
                 "mis_builder_budget",
             ],
             [
-                "odoo14-addon-mis_builder",
-                "odoo14-addon-mis_builder_budget",
+                "odoo14-addon-mis_builder==14.0.*",
+                "odoo14-addon-mis_builder_budget==14.0.*",
             ],
         ),
         (
@@ -748,7 +750,7 @@ def test_addon_name_to_distribution_name() -> None:
 
 def test_addon_name_to_requirement() -> None:
     assert (
-        addon_name_to_requirement("addon1", OdooSeries.v14_0) == "odoo14-addon-addon1"
+        addon_name_to_requirement("addon1", OdooSeries.v13_0) == "odoo13-addon-addon1"
     )
     assert (
         addon_name_to_requirement("addon1", OdooSeries.v16_0)
